@@ -1,0 +1,101 @@
+<!-- 关于移动端浮层滑动的问题 -->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>移动端浮层问题</title>
+  <style type="text/css">
+    .page div {
+      height: 80px;
+    }
+
+    #showPop {
+      color: red;
+    }
+
+    /* 弹窗 */
+
+    .dialog {
+      padding: 0;
+      height: 100%;
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      z-index: 5;
+      background-color: rgba(0, 0, 0, .7);
+    }
+
+    .content {
+      background: #fff;
+      width: 70%;
+      margin: 0 auto;
+      position: relative;
+      top: 130px;
+      height: 200px;
+      overflow: scroll;
+    }
+  </style>
+  <script type="text/javascript">
+    window.onload = function () {
+      var showPop = document.getElementById("showPop")
+      var closePop = document.getElementById("closePop")
+      var pop = document.getElementById("pop")
+      // 显示弹窗
+      showPop.addEventListener("click", function (e) {
+        pop.style.display = "block"
+        // 不起作用
+        e.preventDefault()
+        // 起作用
+        document.querySelector("body").style.overflow = "hidden"
+        document.querySelector("body").style.position = "fixed"
+      })
+      // 关闭弹窗
+      closePop.addEventListener("click", function () {
+        pop.style.display = "none"
+        document.querySelector("body").style.overflow = "scroll"
+        document.querySelector("body").style.position = "relative"
+      })
+    }
+  </script>
+</head>
+
+<body>
+  <div class="page">
+    <div>1</div>
+    <div>2</div>
+    <div>3</div>
+    <div>4</div>
+    <div>5</div>
+    <div id='showPop'>点击这里弹出浮层</div>
+    <div>6</div>
+    <div>7</div>
+    <div>8</div>
+    <div>9</div>
+    <div>10</div>
+    <div>11</div>
+    <div>12</div>
+    <div>13</div>
+    <div>14</div>
+  </div>
+  <!-- 弹窗 -->
+  <div class="dialog" id="pop" style="display:none;">
+    <div class="content">
+      <p id="closePop">点击这里关闭弹窗</p>
+      <p>浮层1</p>
+      <p>浮层2</p>
+      <p>浮层3</p>
+      <p>浮层4</p>
+      <p>浮层5</p>
+      <p>浮层6</p>
+      <p>浮层7</p>
+      <p>浮层8</p>
+    </div>
+  </div>
+</body>
+
+</html>
